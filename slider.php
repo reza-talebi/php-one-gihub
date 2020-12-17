@@ -498,9 +498,24 @@ include "include/DBconfig.php";
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Third Row -->
-                    <div class="row"> 
+                    <div class="row">
                         <div class="col-sm-12">
-                           
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">header title</label>
+                                    <input type="email" class="form-control" name="header-title">
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">sub title</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"  name="sub-title">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="file" class="form-check-input" id="exampleCheck1" name="image">
+                                    <label class="form-check-label" for="exampleCheck1">add file</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="upload">add</button>
+                            </form>
                         </div>
                     </div>
                     <!-- END Third Row -->
