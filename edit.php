@@ -3,17 +3,17 @@
 include "include/DBconfig.php";
 
 
-$idUser=$_GET['id'];
+$idUser = $_GET['id'];
 
-$sql="SELECT `menu` FROM `bitkin` WHERE `id`='$idUser'";
-$fetch=mysqli_query($con,$sql);
-$rows=mysqli_fetch_assoc($fetch);
+$sql = "SELECT `menu` FROM `bitkin` WHERE `id`='$idUser'";
+$fetch = mysqli_query($con, $sql);
+$rows = mysqli_fetch_assoc($fetch);
 
-if(isset($_POST['insert'])){
-    $menu_name=$_POST['menu_name'];
-$q="UPDATE `bitkin` SET `menu`='$menu_name' WHERE `id`='$idUser'";
-$row=mysqli_query($con,$q);
-header("location:menu.php");
+if (isset($_POST['insert'])) {
+    $menu_name = $_POST['menu_name'];
+    $q = "UPDATE `bitkin` SET `menu`='$menu_name' WHERE `id`='$idUser'";
+    $row = mysqli_query($con, $q);
+    header("location:menu.php");
 }
 
 
@@ -506,11 +506,16 @@ header("location:menu.php");
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Third Row -->
-                    <div class="row">
+                    <div class="row"> 
                         <div class="col-sm-12">
-                            <form action="" method="POST">
-                                <input type="text" name="menu_name" value="<?php echo $rows['menu'];?>">
-                                <input type="submit" name="insert">
+                            <form class="row g-3"  method="POST">
+                                <div class="col-auto">
+                                    <label for="staticEmail2" class="visually-hidden">Edit menu</label>
+                                    <input type="text"  class="form-control-plaintext"  name="menu_name" value="<?php echo $rows['menu']; ?>">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" name="insert" class="btn btn-primary mb-3">Edit</button>
+                                </div>
                             </form>
                         </div>
                     </div>
