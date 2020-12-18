@@ -4,6 +4,14 @@ include "../include/DBconfig.php";
 $q="SELECT * FROM `bitkin`";
 $row=mysqli_query($con,$q);
 
+$slider_sql="SELECT * FROM `slider` ORDER BY `id` DESC LIMIT 3";
+$slider_row=mysqli_query($con,$slider_sql);
+
+while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
+	echo $slider_fetch['id']."<br>";
+}
+
+
 ?>
 
 
