@@ -51,9 +51,6 @@ h4{
 
 a {
   color: #0BA9F9;
-  -webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
   transition:  color 300ms, background-color 300ms;
 }
 
@@ -81,8 +78,7 @@ hr {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
+  touch-action: manipulation;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -148,7 +144,6 @@ hr {
 	color: #111;
 	line-height: 24px;
 	display: inline-block;
-	text-transform:;
 	font-weight:500;
 	font-size:18px;
 	font-family:'Roboto';
@@ -278,10 +273,7 @@ hr {
 .carousel-inner .form-inline .form-group button[type="livedemo"]:hover {
 	color:#0BA9F9;
 	background:#fff;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 .carousel-inner .form-inline .form-group button[type="getnow"]{
@@ -294,10 +286,7 @@ hr {
 .carousel-inner .form-inline .form-group button[type="getnow"]:hover {
 	color:#fff;
 	background:#0BA9F9;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 /*************************
@@ -318,19 +307,13 @@ hr {
 .hi-icon-effect:hover {
 	border-radius:6px;
 	background:#f4f4f4;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 .hi-icon-effect i.fa:hover {
 	background:#fff;
 	color: #0BA9F9;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 .text-center i {
@@ -382,15 +365,12 @@ hr {
 }
 
 figure.effect-chico img {
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale(1.12);
 	transform: scale(1.12);
 }
 
 figure.effect-chico:hover img {
 	opacity: 0.5;
-	-webkit-transform: scale(1);
 	transform: scale(1);
 }
 
@@ -427,10 +407,7 @@ figure.effect-chico:hover img {
 .sub-parallax .form-inline .form-group button[type="purchase"]:hover {
 	background:#0BA9F9;
 	color:#fff;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 .sub-parallax .form-inline .form-group button[type="subscribe"] {
@@ -441,10 +418,7 @@ figure.effect-chico:hover img {
 .sub-parallax .form-inline .form-group button[type="subscribe"]:hover {
 	background:#fff;
 	color:#0BA9F9;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 /*************************
@@ -529,9 +503,6 @@ figure.effect-chico:hover img {
 .pricing-area .heading-six:hover, 
 .pricing-area .heading-seven:hover {
 	background-color:#111;
-	 -webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
   transition:  color 300ms, background-color 300ms;
 }
 
@@ -749,10 +720,7 @@ footer {
 .sub-footer .form-inline .form-group button[type="purchase"]:hover {
 	background:#fff;
 	color:#0BA9F9;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 .sub-footer .form-inline .form-group button[type="subscribe"] {
@@ -766,10 +734,7 @@ footer {
 .sub-footer .form-inline .form-group button[type="subscribe"]:hover {
 	background:#0BA9F9;
 	color:#fff;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
+ transition:  color 300ms, background-color 300ms;
 }
 
 ul.social-network {
@@ -820,4 +785,10 @@ ul.social-network li a {
 }
 .social-network li:hover .fa-pinterest-square {
   color: #EA4B49; 
+}
+.img-table{
+  width: 100% !important;
+}
+.img-td{
+  width: 50px !important;
 }

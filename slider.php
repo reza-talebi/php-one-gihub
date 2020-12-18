@@ -2,6 +2,8 @@
 
 include "include/DBconfig.php";
 
+$q = "SELECT * FROM `slider`";
+$row = mysqli_query($con, $q);
 
 
 if (isset($_POST['upload'])) {
@@ -9,16 +11,16 @@ if (isset($_POST['upload'])) {
     $subtitleTitle = $_POST['sub-title'];
 
     $imageName =  $_FILES['image-upload']['name'];
-	$imageType = $_FILES['image-upload']['type'];
-	$imageSize = $_FILES['image-upload']['size'];
-	$imageTmp = $_FILES['image-upload']['tmp_name'];
+    $imageType = $_FILES['image-upload']['type'];
+    $imageSize = $_FILES['image-upload']['size'];
+    $imageTmp = $_FILES['image-upload']['tmp_name'];
     $address = "img/slider-upload/" . basename($_FILES['image-upload']['name']);
-    
-    $sql ="INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
+
+    $sql = "INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
     $fetch = mysqli_query($con, $sql);
-    if ( move_uploaded_file( $_FILES["image-upload"]["tmp_name"], $address ) ) {
+    if (move_uploaded_file($_FILES["image-upload"]["tmp_name"], $address)) {
         header("location:bikin/index.php");
-    }else{
+    } else {
         header("location:slider.php");
         echo "<script>alert('add pic place')</script>";
     }
@@ -516,7 +518,7 @@ if (isset($_POST['upload'])) {
                     <!-- Third Row -->
                     <div class="row">
                         <div class="col-sm-12">
-                            <form method="POST"  enctype="multipart/form-data">
+                            <form method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">header title</label>
                                     <input type="text" class="form-control" name="header-title">
@@ -524,7 +526,7 @@ if (isset($_POST['upload'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">sub title</label>
-                                    <input type="text" class="form-control"  name="sub-title">
+                                    <input type="text" class="form-control" name="sub-title">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="file" class="form-check-input" name="image-upload">
@@ -532,6 +534,35 @@ if (isset($_POST['upload'])) {
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="upload">add</button>
                             </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">About</th>
+                                        <th scope="col">image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($fetch_table = mysqli_fetch_assoc($row)) {
+
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $fetch_table['id'] ?></td>
+                                            <td><?php echo $fetch_table['header-title'] ?></td>
+                                            <td><?php echo $fetch_table['sub-title'] ?></td>
+                                            <td class="img-td"><img class="img-table" src="bikin/img/slider-upload/<?php echo $fetch_table['image-slider'] ?>" alt=""></td>
+                                        </tr>
+
+
+                                </tbody>
+                            <?php } ?>
+                            </table>
                         </div>
                     </div>
                     <!-- END Third Row -->
