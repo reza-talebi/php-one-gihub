@@ -7,12 +7,21 @@ include "include/DBconfig.php";
 if (isset($_POST['upload'])) {
     $headerTitle = $_POST['header-title'];
     $subtitleTitle = $_POST['sub-title'];
-    $imageName =  $_FILES['image-upload']['name'];
-    // $sql = "INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle',$subtitleTitle,$image_name)";
-    // $fetch = mysqli_query($con, $sql);
-    echo $imageName;
 
-    exit;
+    $imageName =  $_FILES['image-upload']['name'];
+	$imageType = $_FILES['image-upload']['type'];
+	$imageSize = $_FILES['image-upload']['size'];
+	$imageTmp = $_FILES['image-upload']['tmp_name'];
+    $address = "img/slider-upload/" . basename($_FILES['image-upload']['name']);
+    
+    $sql ="INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
+    $fetch = mysqli_query($con, $sql);
+    if ( move_uploaded_file( $_FILES["image-upload"]["tmp_name"], $address ) ) {
+        header("location:bikin/index.php");
+    }else{
+        header("location:slider.php");
+        echo "<script>alert('add pic place')</script>";
+    }
 }
 
 
@@ -515,7 +524,7 @@ if (isset($_POST['upload'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">sub title</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" name="sub-title">
+                                    <input type="text" class="form-control"  name="sub-title">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="file" class="form-check-input" name="image-upload">
