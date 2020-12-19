@@ -2,33 +2,31 @@
 
 include "include/DBconfig.php";
 
-$q = "SELECT * FROM `pricing-gold`";
-$row = mysqli_query($con, $q);
 
 
+if (isset($_GET['id'])) {
+    // echo "<script>document.getElementById('gold').disabled = true;</script>";
 
-if (isset($_POST['add'])) {
-    $model = $_POST['model'];
-    $month = $_POST['month'];
-    $disk = $_POST['disk'];
-    $ram = $_POST['ram'];
-    $support = $_POST['Support'];
-    $domain = $_POST['Domain'];
-    $acc_email = $_POST['accountEmail'];
-    
-    $sql = "INSERT INTO `pricing-gold` (`model`,`month`,`disk`,`ram`,`Support`,`Domain`,`Email Account`) VALUES ('$model','$month','$disk','$ram','$support','$domain','$acc_email')";
+
+    $idUser=$_GET['id'];
+    $sql = "SELECT * FROM `pricing-gold` WHERE `id`='$idUser'";
     $fetch = mysqli_query($con, $sql);
-    header("location:bikin/index.php");
+    $rows = mysqli_fetch_assoc($fetch);
 
-}
-
-// delete
-if (isset($_REQUEST['del'])) {
-    $user_id = intval($_GET['del']);
-    $sql_delete = "DELETE FROM `pricing-gold` WHERE `id`='$user_id'";
-    $f = mysqli_query($con, $sql_delete);
-    header("location:pricing-gold.php");
-
+    if (isset($_POST['edit'])) {
+        $model = $_POST['model'];
+        $month = $_POST['month'];
+        $disk = $_POST['disk'];
+        $ram = $_POST['ram'];
+        $support = $_POST['Support'];
+        $domain = $_POST['Domain'];
+        $acc_email = $_POST['accountEmail'];
+        
+        $sql_edit = "UPDATE `pricing-gold` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`Domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
+        $fe = mysqli_query($con, $sql_edit);
+        header("location:pricing-gold.php");
+    }
+    
 }
 
 ?>
@@ -522,129 +520,44 @@ if (isset($_REQUEST['del'])) {
                     <!-- Third Row -->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h1 style="color: gold; font-weight:bold; letter-spacing:2px;">Gold Box</h1>
-                            <form method="POST">
+                        <h1 style="color: gold; font-weight:bold; letter-spacing:2px;">EDIT PRICING</h1>
+                            <form method="POST" >
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">model</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
+                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model" value="<?php echo $rows['model']?>">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">month</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="month">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="month" value="<?php echo $rows['month']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">disk</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="disk">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="disk" value="<?php echo $rows['disk']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">ram</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="ram">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="ram" value="<?php echo $rows['ram']?>">
                                 </div>
                                 <div class="mb-5">
                                     <label for="exampleInputPassword1" class="form-label">Support</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Support">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Support" value="<?php echo $rows['Support']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Domain</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Domain">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Domain" value="<?php echo $rows['Domain']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">number Email Account</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="accountEmail">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="accountEmail" value="<?php echo $rows['Email Account']?>">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mt-5" name="add" style="margin-top: 10px;">Add</button>
+                                <button type="submit" class="btn btn-primary mt-5" id="gold"  name="edit" style="margin-top: 10px;">Edit pricing</button>
 
 
                             </form>
                         </div>
-                        <div class="col-sm-6">
-                            <form method="POST">
-
-                            </form>
-                        </div>
-
-
-                    </div>
-                    <div class="row" style="margin-top: 80px;">
-                        <div class="col-sm-6">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="td-pricing">#</th>
-                                        <th scope="col" class="td-pricing">model</th>
-                                        <th scope="col" class="td-pricing">month</th>
-                                        <th scope="col" class="td-pricing">disk</th>
-                                        <th scope="col" class="td-pricing">ram</th>
-                                        <th scope="col" class="td-pricing">Support</th>
-                                        <th scope="col" class="td-pricing">Domain</th>
-                                        <th scope="col" class="td-pricing">Email</th>
-                                        <th scope="col" class="td-pricing">Edit</th>
-                                        <th scope="col" class="td-pricing">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    while ($fetch_table = mysqli_fetch_assoc($row)) {
-
-                                    ?>
-                                        <tr>
-                                            <td  style="font-size:20px; text-align:left; color:red"><?php echo $fetch_table['id'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['model'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['month'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['disk'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['ram'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Support'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Domain'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Email Account'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing-gold.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="pricing-gold.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
-                                        </tr>
-                                        <?php } ?>
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                        <div class="col-sm-6">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="td-pricing">#</th>
-                                        <th scope="col" class="td-pricing">model</th>
-                                        <th scope="col" class="td-pricing">month</th>
-                                        <th scope="col" class="td-pricing">disk</th>
-                                        <th scope="col" class="td-pricing">ram</th>
-                                        <th scope="col" class="td-pricing">Support</th>
-                                        <th scope="col" class="td-pricing">Domain</th>
-                                        <th scope="col" class="td-pricing">Email</th>
-                                        <th scope="col" class="td-pricing">Edit</th>
-                                        <th scope="col" class="td-pricing">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    while ($fetch_table = mysqli_fetch_assoc($row)) {
-
-                                    ?>
-                                        <tr>
-                                            <td  style="font-size:20px; text-align:left; color:red"><?php echo $fetch_table['id'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['model'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['month'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['disk'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['ram'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Support'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Domain'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Email Account'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing-gold.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="pricing-gold.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
-                                        </tr>
-                                        <?php } ?>
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                        
+    
                     </div>
                     <!-- END Third Row -->
                 </div>
