@@ -546,6 +546,7 @@ if (isset($_POST['upload'])) {
                                         <th scope="col">#</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">About</th>
+                                        <th scope="col">image</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                     </tr>
@@ -559,6 +560,7 @@ if (isset($_POST['upload'])) {
                                             <td><?php echo $fetch_table['id'] ?></td>
                                             <td><?php echo $fetch_table['header-title'] ?></td>
                                             <td><?php echo $fetch_table['sub-title'] ?></td>
+                                            <td class="td-img-tables"><img class="image-table"src="bikin/img/slider-upload/<?php echo $fetch_table['image-slider'] ?>" ></td>
                                             <td><a href="edit-slider.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
                                             <td><a href="slider.php?del=<?php echo $fetch_table['id']?>">Delete</a></td>
                                         </tr>
