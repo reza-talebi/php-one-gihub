@@ -5,12 +5,7 @@ include "include/DBconfig.php";
 $q = "SELECT * FROM `slider`";
 $row = mysqli_query($con, $q);
 
-//delete
-if(isset($_REQUEST['del'])){
-    $user_id=intval($_GET['del']);
-    $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
-    $f = mysqli_query($con, $sql_delete);
-}
+
 
 if (isset($_POST['upload'])) {
     $headerTitle = $_POST['header-title'];
@@ -613,3 +608,13 @@ if (isset($_POST['upload'])) {
 </script>
 
 </html>
+<?php
+
+//delete
+if(isset($_REQUEST['del'])){
+    $user_id=intval($_GET['del']);
+    $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
+    $f = mysqli_query($con, $sql_delete);
+}
+
+?>
