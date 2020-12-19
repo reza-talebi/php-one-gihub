@@ -5,6 +5,12 @@ include "include/DBconfig.php";
 $q = "SELECT * FROM `slider`";
 $row = mysqli_query($con, $q);
 
+//delete
+if(isset($_REQUEST['del'])){
+    $user_id=intval($_GET['del']);
+    $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
+    $f = mysqli_query($con, $sql_delete);
+}
 
 if (isset($_POST['upload'])) {
     $headerTitle = $_POST['header-title'];
@@ -14,7 +20,7 @@ if (isset($_POST['upload'])) {
     $imageType = $_FILES['image-upload']['type'];
     $imageSize = $_FILES['image-upload']['size'];
     $imageTmp = $_FILES['image-upload']['tmp_name'];
-    $address = "img/slider-upload/" . basename($_FILES['image-upload']['name']);
+    $address = "bikin/img/slider-upload/" . basename($_FILES['image-upload']['name']);
 
     $sql = "INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
     $fetch = mysqli_query($con, $sql);
@@ -25,6 +31,7 @@ if (isset($_POST['upload'])) {
         echo "<script>alert('add pic place')</script>";
     }
 }
+
 
 
 ?>
@@ -544,7 +551,8 @@ if (isset($_POST['upload'])) {
                                         <th scope="col">#</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">About</th>
-                                        <th scope="col">image</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -556,10 +564,9 @@ if (isset($_POST['upload'])) {
                                             <td><?php echo $fetch_table['id'] ?></td>
                                             <td><?php echo $fetch_table['header-title'] ?></td>
                                             <td><?php echo $fetch_table['sub-title'] ?></td>
-                                            <td class="img-td"><img class="img-table" src="bikin/img/slider-upload/<?php echo $fetch_table['image-slider'] ?>" alt=""></td>
+                                            <td><a href="edit-slider.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
+                                            <td><a href="slider.php?del=<?php echo $fetch_table['id']?>">Delete</a></td>
                                         </tr>
-
-
                                 </tbody>
                             <?php } ?>
                             </table>
