@@ -7,10 +7,17 @@ $row=mysqli_query($con,$q);
 $slider_sql="SELECT * FROM `slider` ORDER BY `id` DESC LIMIT 3";
 $slider_row=mysqli_query($con,$slider_sql);
 
-// while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
-// 	echo $slider_fetch['id']."<br>";
-// }
+$arr_header=[];
+$arr_subTitle=[];
+$arr_image=[];
+$i=0;
 
+while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
+	$arr_header[$i]=$slider_fetch['header-title'];
+	$arr_subTitle[$i]=$slider_fetch['sub-title'];
+	$arr_image[$i]=$slider_fetch['image-slider'];
+	$i++;
+}
 
 ?>
 
@@ -76,13 +83,13 @@ $slider_row=mysqli_query($con,$slider_sql);
 
 				<div class="carousel-inner">
 					<div class="item active">						
-						<img src="img/7.jpg" class="img-responsive" alt=""> 
+					<img src="img/1.jpg" class="img-responsive" alt=""> 
 						<div class="carousel-caption">
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">								
-								<h2><span>Clean & Fully Modern Design</span></h2>
+								<h2><span><?php echo $arr_header[0];?></span></h2>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">								
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+								<p><?php echo $arr_subTitle[0];?></p>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">								
 								<form class="form-inline">
@@ -98,13 +105,13 @@ $slider_row=mysqli_query($con,$slider_sql);
 				    </div>
 			
 				    <div class="item">
-						<img src="img/6.jpg" class="img-responsive" alt=""> 
+					<img src="img/6.jpg" class="img-responsive" alt=""> 
 						<div class="carousel-caption">
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.0s">								
-								<h2>Fully Responsive</h2>
+								<h2><?php echo $arr_header[1];?></h2>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.3s">								
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+								<p><?php echo $arr_subTitle[1];?></p>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.6s">								
 								<form class="form-inline">
@@ -119,13 +126,13 @@ $slider_row=mysqli_query($con,$slider_sql);
 						</div>
 				    </div> 
 				    <div class="item">
-						<img src="img/1.jpg" class="img-responsive" alt=""> 
+					<img src="img/7.jpg" class="img-responsive" alt="">  
 						<div class="carousel-caption">
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">								
-								<h2>Modern Design</h2>
+								<h2><?php echo $arr_header[2];?></h2>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">								
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+								<p><?php echo $arr_subTitle[2];?></p>
 							</div>
 							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">								
 								<form class="form-inline">
