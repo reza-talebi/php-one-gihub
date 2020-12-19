@@ -3813,13 +3813,19 @@ p, .table, .alert, .carousel {
     .block, .block.full {border: none !important; padding: 0 !important;}
     .block-title {margin: 0 0 20px !important;}
 }
-td{
+td,th{
     vertical-align: middle !important;
-   
+    border: 1px solid black !important;
+}
+td{
+    font-size: 19px;
 }
 .image-table{
     width: 60%;
 }
 .td-img-tables{
     width: 20% !important;
+}
+.td-pricing{
+    padding: 2px !important;
 }
