@@ -29,6 +29,31 @@ if (isset($_GET['id'])) {
     
 }
 
+
+// sliver-----
+if (isset($_GET['id_silver'])) {
+    // echo "<script>document.getElementById('gold').disabled = true;</script>";
+
+    $idUser=$_GET['id_silver'];
+    $sql = "SELECT * FROM `pricing-silver` WHERE `id`='$idUser'";
+    $fetch = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_assoc($fetch);
+
+    if (isset($_POST['edit'])) {
+        $model = $_POST['model'];
+        $month = $_POST['month'];
+        $disk = $_POST['disk'];
+        $ram = $_POST['ram'];
+        $support = $_POST['Support'];
+        $domain = $_POST['Domain'];
+        $acc_email = $_POST['accountEmail'];
+        
+        $sql_edit = "UPDATE `pricing-silver` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`Domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
+        $fe = mysqli_query($con, $sql_edit);
+        header("location:pricing-gold.php");
+    }
+    
+}
 ?>
 
 
@@ -545,7 +570,7 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Domain</label>
-                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Domain" value="<?php echo $rows['Domain']?>">
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Domain" value="<?php echo $rows['domain']?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">number Email Account</label>
