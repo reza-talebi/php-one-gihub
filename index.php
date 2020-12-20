@@ -190,10 +190,10 @@
                                     <a href="page_app_social.php"><i class="fa fa-share-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social Net</span></a>
                                 </li>
                                 <li>
-                                    <a href="page_app_media.php"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Media Box</span></a>
+                                    <a href="slider.php"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Slider</span></a>
                                 </li>
                                 <li>
-                                    <a href="page_app_estorel.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">eStore</span></a>
+                                    <a href="pricing-gold.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Pricing</span></a>
                                 </li>
                             </ul>
                             <!-- END Sidebar Navigation -->
