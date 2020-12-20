@@ -184,16 +184,16 @@
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
                                 <li>
-                                    <a href="menu.php"><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Menu</span></a>
+                                    <a href="menu-files/menu.php"><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Menu</span></a>
                                 </li>
                                 <li>
-                                    <a href="page_app_social.php"><i class="fa fa-share-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social Net</span></a>
+                                    <a href="#"><i class="fa fa-share-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social Net</span></a>
                                 </li>
                                 <li>
-                                    <a href="slider.php"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Slider</span></a>
+                                    <a href="slider-files/slider.php"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Slider</span></a>
                                 </li>
                                 <li>
-                                    <a href="pricing-gold.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Pricing</span></a>
+                                    <a href="pricing-files/pricing.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Pricing</span></a>
                                 </li>
                             </ul>
                             <!-- END Sidebar Navigation -->

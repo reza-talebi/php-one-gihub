@@ -1,21 +1,24 @@
 <?php
 
-include "include/DBconfig.php";
+include "../include/DBconfig.php";
 
 
-$idUser = $_GET['id'];
 
-$sql = "SELECT `menu` FROM `bitkin` WHERE `id`='$idUser'";
-$fetch = mysqli_query($con, $sql);
-$rows = mysqli_fetch_assoc($fetch);
+if (isset($_GET['id'])) {
+    $idUser=$_GET['id'];
+    $sql = "SELECT * FROM `slider` WHERE `id`='$idUser'";
+    $fetch = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_assoc($fetch);
 
-if (isset($_POST['insert'])) {
-    $menu_name = $_POST['menu_name'];
-    $q = "UPDATE `bitkin` SET `menu`='$menu_name' WHERE `id`='$idUser'";
-    $row = mysqli_query($con, $q);
-    header("location:menu.php");
+    if (isset($_POST['insert'])) {
+        $headerTitle = $_POST['headerTitle'];
+        $subTitle = $_POST['subTitle'];
+        $imageUpdate = $_POST['image-update'];
+        $q = "UPDATE `slider` SET `header-title`='$headerTitle',`sub-title`='$subTitle',`image-slider`='$imageUpdate' WHERE `id`='$idUser'";
+        $row = mysqli_query($con, $q);
+        header("location:edit-slider.php");
+    }
 }
-
 
 ?>
 
@@ -52,27 +55,27 @@ if (isset($_POST['insert'])) {
 
     <!-- Stylesheets -->
     <!-- Bootstrap is included in its original form, unaltered -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- Related styles of various icon packs and plugins -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="../css/plugins.css">
 
     <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="../css/themes.css">
     <!-- END Stylesheets -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/overwrite.css">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/overwrite.css">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
     <!-- Modernizr (browser feature detection library) -->
-    <script src="js/vendor/modernizr-3.3.1.min.js"></script>
+    <script src="../js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -506,16 +509,29 @@ if (isset($_POST['insert'])) {
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Third Row -->
-                    <div class="row"> 
+                    <div class="row">
                         <div class="col-sm-12">
-                            <form class="row g-3"  method="POST">
-                                <div class="col-auto">
-                                    <label for="staticEmail2" class="visually-hidden">Edit menu</label>
-                                    <input type="text"  class="form-control-plaintext"  name="menu_name" value="<?php echo $rows['menu']; ?>">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" name="insert" class="btn btn-primary mb-3">Edit</button>
-                                </div>
+                            <form method="POST">
+                                <fieldset>
+                                    <legend>Edit slider</legend>
+                                    <div class="mb-3">
+                                        <label for="disabledTextInput" class="form-label">HEADER TITLE</label>
+                                        <input type="text" class="form-control" placeholder="HEADER TITLE" name="headerTitle" value="<?php echo $rows['header-title'] ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">ABOUT TITLE</label>
+                                        <input type="text" class="form-control" name="subTitle" placeholder="sub TITLE" value="<?php echo $rows['sub-title'] ?>">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">image</label>
+                                        <input type="file" class="form-control" name="image-update">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        <div class="mb-3">
+                                    
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" name="insert">EDIT</button>
+                                </fieldset>
                             </form>
                         </div>
                     </div>
@@ -530,13 +546,13 @@ if (isset($_POST['insert'])) {
     <!-- END Page Wrapper -->
 
     <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/app.js"></script>
 
     <!-- Load and execute javascript code used only in this page -->
-    <script src="js/pages/readyDashboard.js"></script>
+    <script src="../js/pages/readyDashboard.js"></script>
     <script>
         $(function() {
             ReadyDashboard.init();
@@ -544,14 +560,14 @@ if (isset($_POST['insert'])) {
     </script>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-2.1.1.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/parallax.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/fliplightbox.min.js"></script>
-<script src="js/functions.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/parallax.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+<script src="../js/functions.js"></script>
 <script>
     wow = new WOW({
 

@@ -1,34 +1,59 @@
 <?php
 
-include "include/DBconfig.php";
-
-$q = "SELECT * FROM `slider`";
-$row = mysqli_query($con, $q);
+include "../include/DBconfig.php";
 
 
 
-if (isset($_POST['upload'])) {
-    $headerTitle = $_POST['header-title'];
-    $subtitleTitle = $_POST['sub-title'];
+if (isset($_GET['id'])) {
+    // echo "<script>document.getElementById('gold').disabled = true;</script>";
 
-    $imageName =  $_FILES['image-upload']['name'];
-    $imageType = $_FILES['image-upload']['type'];
-    $imageSize = $_FILES['image-upload']['size'];
-    $imageTmp = $_FILES['image-upload']['tmp_name'];
-    $address = "bikin/img/slider-upload/" . basename($_FILES['image-upload']['name']);
 
-    $sql = "INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
+    $idUser=$_GET['id'];
+    $sql = "SELECT * FROM `pricing-gold` WHERE `id`='$idUser'";
     $fetch = mysqli_query($con, $sql);
-    if (move_uploaded_file($_FILES["image-upload"]["tmp_name"], $address)) {
-        header("location:bikin/index.php");
-    } else {
-        header("location:slider.php");
-        echo "<script>alert('add pic place')</script>";
+    $rows = mysqli_fetch_assoc($fetch);
+
+    if (isset($_POST['edit'])) {
+        $model = $_POST['model'];
+        $month = $_POST['month'];
+        $disk = $_POST['disk'];
+        $ram = $_POST['ram'];
+        $support = $_POST['Support'];
+        $domain = $_POST['Domain'];
+        $acc_email = $_POST['accountEmail'];
+        
+        $sql_edit = "UPDATE `pricing-gold` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
+        $fe = mysqli_query($con, $sql_edit);
+        header("location:pricing.php");
     }
+    
 }
 
 
+// sliver-----
+if (isset($_GET['id_silver'])) {
+    // echo "<script>document.getElementById('gold').disabled = true;</script>";
 
+    $idUser=$_GET['id_silver'];
+    $sql = "SELECT * FROM `pricing-silver` WHERE `id`='$idUser'";
+    $fetch = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_assoc($fetch);
+
+    if (isset($_POST['edit'])) {
+        $model = $_POST['model'];
+        $month = $_POST['month'];
+        $disk = $_POST['disk'];
+        $ram = $_POST['ram'];
+        $support = $_POST['Support'];
+        $domain = $_POST['Domain'];
+        $acc_email = $_POST['accountEmail'];
+        
+        $sql_edit = "UPDATE `pricing-silver` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`Domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
+        $fe = mysqli_query($con, $sql_edit);
+        header("location:pricing.php");
+    }
+    
+}
 ?>
 
 
@@ -61,30 +86,29 @@ if (isset($_POST['upload'])) {
     <link rel="apple-touch-icon" href="img/icon152.png" sizes="152x152">
     <link rel="apple-touch-icon" href="img/icon180.png" sizes="180x180">
     <!-- END Icons -->
-
-    <!-- Stylesheets -->
+ <!-- Stylesheets -->
     <!-- Bootstrap is included in its original form, unaltered -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- Related styles of various icon packs and plugins -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="../css/plugins.css">
 
     <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="../css/themes.css">
     <!-- END Stylesheets -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/overwrite.css">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/overwrite.css">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
     <!-- Modernizr (browser feature detection library) -->
-    <script src="js/vendor/modernizr-3.3.1.min.js"></script>
+    <script src="../js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -519,55 +543,45 @@ if (isset($_POST['upload'])) {
                 <div id="page-content">
                     <!-- Third Row -->
                     <div class="row">
-                        <div class="col-sm-12">
-                            <form method="POST" enctype="multipart/form-data">
+                        <div class="col-sm-6">
+                        <h1 style="color: gold; font-weight:bold; letter-spacing:2px;">EDIT PRICING</h1>
+                            <form method="POST" >
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">header title</label>
-                                    <input type="text" class="form-control" name="header-title">
+                                    <label for="exampleInputEmail1" class="form-label">model</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model" value="<?php echo $rows['model']?>">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">sub title</label>
-                                    <input type="text" class="form-control" name="sub-title">
+                                    <label for="exampleInputPassword1" class="form-label">month</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="month" value="<?php echo $rows['month']?>">
                                 </div>
-                                <div class="mb-3 form-check">
-                                    <input type="file" class="form-check-input" name="image-upload">
-                                    <label class="form-check-label" for="exampleCheck1">add file</label>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">disk</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="disk" value="<?php echo $rows['disk']?>">
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="upload">add</button>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">ram</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="ram" value="<?php echo $rows['ram']?>">
+                                </div>
+                                <div class="mb-5">
+                                    <label for="exampleInputPassword1" class="form-label">Support</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Support" value="<?php echo $rows['Support']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Domain</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="Domain" value="<?php echo $rows['domain']?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">number Email Account</label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="accountEmail" value="<?php echo $rows['Email Account']?>">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-5" id="gold"  name="edit" style="margin-top: 10px;">Edit pricing</button>
+
+
                             </form>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">About</th>
-                                        <th scope="col">image</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    while ($fetch_table = mysqli_fetch_assoc($row)) {
-
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $fetch_table['id'] ?></td>
-                                            <td><?php echo $fetch_table['header-title'] ?></td>
-                                            <td><?php echo $fetch_table['sub-title'] ?></td>
-                                            <td class="td-img-tables"><img class="image-table"src="bikin/img/slider-upload/<?php echo $fetch_table['image-slider'] ?>" ></td>
-                                            <td><a href="edit-slider.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
-                                            <td><a href="slider.php?del=<?php echo $fetch_table['id']?>">Delete</a></td>
-                                        </tr>
-                                </tbody>
-                            <?php } ?>
-                            </table>
-                        </div>
+    
                     </div>
                     <!-- END Third Row -->
                 </div>
@@ -579,11 +593,10 @@ if (isset($_POST['upload'])) {
     </div>
     <!-- END Page Wrapper -->
 
-    <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/app.js"></script>
 
     <!-- Load and execute javascript code used only in this page -->
     <script src="js/pages/readyDashboard.js"></script>
@@ -594,14 +607,14 @@ if (isset($_POST['upload'])) {
     </script>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-2.1.1.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/parallax.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/fliplightbox.min.js"></script>
-<script src="js/functions.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/parallax.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+<script src="../js/functions.js"></script>
 <script>
     wow = new WOW({
 
@@ -610,13 +623,3 @@ if (isset($_POST['upload'])) {
 </script>
 
 </html>
-<?php
-
-//delete
-if(isset($_REQUEST['del'])){
-    $user_id=intval($_GET['del']);
-    $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
-    $f = mysqli_query($con, $sql_delete);
-}
-
-?>

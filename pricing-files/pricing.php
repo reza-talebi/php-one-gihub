@@ -1,6 +1,6 @@
 <?php
 
-include "include/DBconfig.php";
+include "../include/DBconfig.php";
 
 $q = "SELECT * FROM `pricing-gold`";
 $row = mysqli_query($con, $q);
@@ -21,7 +21,7 @@ if (isset($_POST['add_silver'])) {
 
     $sql = "INSERT INTO `pricing-silver` (`model`,`month`,`disk`,`ram`,`Support`,`domain`,`Email Account`) VALUES ('$model','$month','$disk','$ram','$support','$domain','$acc_email')";
     $fetch = mysqli_query($con, $sql);
-    header("location:bikin/index.php");
+    header("location:../bikin/index.php");
 }
 
 // ----------------------------
@@ -37,20 +37,20 @@ if (isset($_POST['add'])) {
 
     $sql = "INSERT INTO `pricing-gold` (`model`,`month`,`disk`,`ram`,`Support`,`Domain`,`Email Account`) VALUES ('$model','$month','$disk','$ram','$support','$domain','$acc_email')";
     $fetch = mysqli_query($con, $sql);
-    header("location:bikin/index.php");
+    header("location:../bikin/index.php");
 }
 // delete
 if (isset($_REQUEST['del'])) {
     $user_id = intval($_GET['del']);
     $sql_delete = "DELETE FROM `pricing-gold` WHERE `id`='$user_id'";
     $f = mysqli_query($con, $sql_delete);
-    header("location:pricing-gold.php");
+    header("location:pricing.php");
 }
 if (isset($_REQUEST['del_silver'])) {
     $user_id = intval($_GET['del_silver']);
     $sql_delete = "DELETE FROM `pricing-silver` WHERE `id`='$user_id'";
     $f = mysqli_query($con, $sql_delete);
-    header("location:pricing-gold.php");
+    header("location:pricing.php");
 }
 
 ?>
@@ -88,27 +88,27 @@ if (isset($_REQUEST['del_silver'])) {
 
     <!-- Stylesheets -->
     <!-- Bootstrap is included in its original form, unaltered -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!-- Related styles of various icon packs and plugins -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="../css/plugins.css">
 
     <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="../css/themes.css">
     <!-- END Stylesheets -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/overwrite.css">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/overwrite.css">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
     <!-- Modernizr (browser feature detection library) -->
-    <script src="js/vendor/modernizr-3.3.1.min.js"></script>
+    <script src="../js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -655,8 +655,8 @@ if (isset($_REQUEST['del_silver'])) {
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Support'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['domain'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Email Account'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing-gold.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="pricing-gold.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
+                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
+                                            <td style="text-align:center;" class="td-pricing"><a href="pricing.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -694,8 +694,8 @@ if (isset($_REQUEST['del_silver'])) {
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_silver['Support'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_silver['domain'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_silver['Email Account'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing-gold.php?id_silver=<?php echo $fetch_silver['id'] ?>">Edit</a></td>
-                                            <td style="text-align:center;" class="td-pricing"><a href="pricing-gold.php?del_silver=<?php echo $fetch_silver['id'] ?>">Delete</a></td>
+                                            <td style="text-align:center;" class="td-pricing"><a href="edit-pricing.php?id_silver=<?php echo $fetch_silver['id'] ?>">Edit</a></td>
+                                            <td style="text-align:center;" class="td-pricing"><a href="pricing.php?del_silver=<?php echo $fetch_silver['id'] ?>">Delete</a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -715,10 +715,10 @@ if (isset($_REQUEST['del_silver'])) {
     <!-- END Page Wrapper -->
 
     <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/app.js"></script>
 
     <!-- Load and execute javascript code used only in this page -->
     <script src="js/pages/readyDashboard.js"></script>
@@ -729,14 +729,14 @@ if (isset($_REQUEST['del_silver'])) {
     </script>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-2.1.1.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/parallax.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/fliplightbox.min.js"></script>
-<script src="js/functions.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/parallax.min.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+<script src="../js/functions.js"></script>
 <script>
     wow = new WOW({
 
