@@ -1,37 +1,36 @@
 <?php
 
 include "../include/DBconfig.php";
-$q="SELECT * FROM `bitkin`";
-$row=mysqli_query($con,$q);
+$q = "SELECT * FROM `bitkin`";
+$row = mysqli_query($con, $q);
 
-$slider_sql="SELECT * FROM `slider` ORDER BY `id` DESC LIMIT 3";
-$slider_row=mysqli_query($con,$slider_sql);
+$slider_sql = "SELECT * FROM `slider` ORDER BY `id` DESC LIMIT 3";
+$slider_row = mysqli_query($con, $slider_sql);
 
 // -----------------pricing gold
-$pricing_sql="SELECT * FROM `pricing-gold` ORDER BY `id` DESC LIMIT 3";
-$pricing_row=mysqli_query($con,$pricing_sql);
+$pricing_sql = "SELECT * FROM `pricing-gold` ORDER BY `id` DESC LIMIT 3";
+$pricing_row = mysqli_query($con, $pricing_sql);
 // while ($pricing_fetch=mysqli_fetch_assoc($pricing_row)) {
-	
+
 // }
 // -----------------pricing gld
 
 // -----------------pricing silver
-$pricing_sql_silver="SELECT * FROM `pricing-silver` ORDER BY `id` DESC LIMIT 3";
-$pricing_row_silver=mysqli_query($con,$pricing_sql_silver);
-// while ($pricing_fetch_silver=mysqli_fetch_assoc($pricing_row_silver)) {
-	
-// }
+$pricing_sql_silver = "SELECT * FROM `pricing-silver` ORDER BY `id` DESC LIMIT 4";
+$pricing_row_silver = mysqli_query($con, $pricing_sql_silver);
+
+
 // -----------------pricing silver
 
-$arr_header=[];
-$arr_subTitle=[];
-$arr_image=[];
-$i=0;
+$arr_header = [];
+$arr_subTitle = [];
+$arr_image = [];
+$i = 0;
 
-while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
-	$arr_header[$i]=$slider_fetch['header-title'];
-	$arr_subTitle[$i]=$slider_fetch['sub-title'];
-	$arr_image[$i]=$slider_fetch['image-slider'];
+while ($slider_fetch = mysqli_fetch_assoc($slider_row)) {
+	$arr_header[$i] = $slider_fetch['header-title'];
+	$arr_subTitle[$i] = $slider_fetch['sub-title'];
+	$arr_image[$i] = $slider_fetch['image-slider'];
 	$i++;
 }
 
@@ -40,54 +39,59 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bikin - HTML Bootstrap Template</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Bikin - HTML Bootstrap Template</title>
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/overwrite.css">
-	<link href="css/animate.min.css" rel="stylesheet"> 
-	<link href="css/style.css" rel="stylesheet" />	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+	<link href="css/animate.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" />
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>	
+</head>
+
+<body>
 	<header id="header">
-        <nav class="navbar navbar-fixed-top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">Bikin</a>
-                </div>				
-                <div class="collapse navbar-collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#header">Home</a></li>
-							<?php
-                                while ($fetch=mysqli_fetch_assoc($row)) {
-                        ?>
-                        <li><a href="#feature"><?php echo $fetch['menu'];?></a></li>
-						<?php } ?>                       
-                    </ul>
-                </div>
-            </div><!--/.container-->
-        </nav><!--/nav-->		
-    </header><!--/header-->	
-	<div class="slider">		
+		<nav class="navbar navbar-fixed-top" role="banner">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Bikin</a>
+				</div>
+				<div class="collapse navbar-collapse navbar-right">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#header">Home</a></li>
+						<?php
+						while ($fetch = mysqli_fetch_assoc($row)) {
+						?>
+							<li><a href="#feature"><?php echo $fetch['menu']; ?></a></li>
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
+			<!--/.container-->
+		</nav>
+		<!--/nav-->
+	</header>
+	<!--/header-->
+	<div class="slider">
 		<div id="about-slider">
 			<div id="carousel-slider" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -98,16 +102,16 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				</ol>
 
 				<div class="carousel-inner">
-					<div class="item active">						
-					<img src="img/1.jpg" class="img-responsive" alt=""> 
+					<div class="item active">
+						<img src="img/1.jpg" class="img-responsive" alt="">
 						<div class="carousel-caption">
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">								
-								<h2><span><?php echo $arr_header[0];?></span></h2>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+								<h2><span><?php echo $arr_header[0]; ?></span></h2>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">								
-								<p><?php echo $arr_subTitle[0];?></p>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+								<p><?php echo $arr_subTitle[0]; ?></p>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">								
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
 								<form class="form-inline">
 									<div class="form-group">
 										<button type="livedemo" name="Live Demo" class="btn btn-primary btn-lg" required="required">Live Demo</button>
@@ -118,18 +122,18 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 								</form>
 							</div>
 						</div>
-				    </div>
-			
-				    <div class="item">
-					<img src="img/6.jpg" class="img-responsive" alt=""> 
+					</div>
+
+					<div class="item">
+						<img src="img/6.jpg" class="img-responsive" alt="">
 						<div class="carousel-caption">
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.0s">								
-								<h2><?php echo $arr_header[1];?></h2>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.0s">
+								<h2><?php echo $arr_header[1]; ?></h2>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.3s">								
-								<p><?php echo $arr_subTitle[1];?></p>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.3s">
+								<p><?php echo $arr_subTitle[1]; ?></p>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.6s">								
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="1.6s">
 								<form class="form-inline">
 									<div class="form-group">
 										<button type="livedemo" name="purchase" class="btn btn-primary btn-lg" required="required">Live Demo</button>
@@ -140,17 +144,17 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 								</form>
 							</div>
 						</div>
-				    </div> 
-				    <div class="item">
-					<img src="img/7.jpg" class="img-responsive" alt="">  
+					</div>
+					<div class="item">
+						<img src="img/7.jpg" class="img-responsive" alt="">
 						<div class="carousel-caption">
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">								
-								<h2><?php echo $arr_header[2];?></h2>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+								<h2><?php echo $arr_header[2]; ?></h2>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">								
-								<p><?php echo $arr_subTitle[2];?></p>
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+								<p><?php echo $arr_subTitle[2]; ?></p>
 							</div>
-							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">								
+							<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
 								<form class="form-inline">
 									<div class="form-group">
 										<button type="livedemo" name="purchase" class="btn btn-primary btn-lg" required="required">Live Demo</button>
@@ -161,20 +165,23 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 								</form>
 							</div>
 						</div>
-				    </div> 
+					</div>
 				</div>
-				
+
 				<a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
-					<i class="fa fa-angle-left"></i> 
+					<i class="fa fa-angle-left"></i>
 				</a>
-				
-				<a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
-					<i class="fa fa-angle-right"></i> 
+
+				<a class=" right carousel-control hidden-xs" href="#carousel-slider" data-slide="next">
+					<i class="fa fa-angle-right"></i>
 				</a>
-			</div> <!--/#carousel-slider-->
-		</div><!--/#about-slider-->
-	</div><!--/#slider-->
-	
+			</div>
+			<!--/#carousel-slider-->
+		</div>
+		<!--/#about-slider-->
+	</div>
+	<!--/#slider-->
+
 	<div id="feature">
 		<div class="container">
 			<div class="row">
@@ -185,7 +192,7 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				<div class="col-md-3 wow fadeInRight" data-wow-offset="0" data-wow-delay="0.3s">
 					<div class="text-center">
 						<div class="hi-icon-wrap hi-icon-effect">
-							<i class="fa fa-laptop"></i>						
+							<i class="fa fa-laptop"></i>
 							<h2>Fully Responsive</h2>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
 						</div>
@@ -221,7 +228,7 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="gallery">
 		<div class="container">
 			<div class="text-center">
@@ -229,33 +236,33 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit<br>amet consectetur adipisicing elit</p>
 			</div>
 			<div class="row">
-				<figure class="effect-chico">						
+				<figure class="effect-chico">
 					<div class="col-md-3 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
 						<a href="img/work/1.jpg" class="flipLightBox">
-						<img src="img/work/1.jpg" class="img-responsive" alt="">
-						</a>						
+							<img src="img/work/1.jpg" class="img-responsive" alt="">
+						</a>
 					</div>
 				</figure>
 				<figure class="effect-chico">
 					<div class="col-md-3 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
 						<a href="img/work/2.jpg" class="flipLightBox">
-						<img src="img/work/2.jpg" class="img-responsive" alt="">
+							<img src="img/work/2.jpg" class="img-responsive" alt="">
 						</a>
 					</div>
-				</figure>	
+				</figure>
 				<figure class="effect-chico">
 					<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
 						<a href="img/work/3.jpg" class="flipLightBox">
-						<img src="img/work/3.jpg" class="img-responsive" alt="">
+							<img src="img/work/3.jpg" class="img-responsive" alt="">
 						</a>
 					</div>
 				</figure>
 				<figure class="effect-chico">
 					<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
 						<a href="img/work/4.jpg" class="flipLightBox">
-						<img src="img/work/4.jpg" class="img-responsive" alt="">
+							<img src="img/work/4.jpg" class="img-responsive" alt="">
 						</a>
-					</div>	
+					</div>
 				</figure>
 			</div>
 		</div>
@@ -265,36 +272,37 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
 							<a href="img/work/5.jpg" class="flipLightBox">
-							<img src="img/work/5.jpg" class="img-responsive" alt="">
+								<img src="img/work/5.jpg" class="img-responsive" alt="">
 							</a>
 						</div>
-					</figure>	
+					</figure>
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
 							<a href="img/work/6.jpg" class="flipLightBox">
-							<img src="img/work/6.jpg" class="img-responsive" alt="">
+								<img src="img/work/6.jpg" class="img-responsive" alt="">
 							</a>
 						</div>
-					</figure>	
+					</figure>
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
 							<a href="img/work/7.jpg" class="flipLightBox">
-							<img src="img/work/7.jpg" class="img-responsive" alt="">
+								<img src="img/work/7.jpg" class="img-responsive" alt="">
 							</a>
 						</div>
-					</figure>	
+					</figure>
 					<figure class="effect-chico">
 						<div class="col-md-3 wow fadeInDown" data-wow-offset="0" data-wow-delay="0.3s">
 							<a href="img/work/8.jpg" class="flipLightBox">
-							<img src="img/work/8.jpg" class="img-responsive" alt="">
+								<img src="img/work/8.jpg" class="img-responsive" alt="">
 							</a>
 						</div>
 					</figure>
 				</div>
 			</div>
 		</div>
-	</div><!--/#gallery-->
-	
+	</div>
+	<!--/#gallery-->
+
 	<div class="parallax-window">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="text-center">
@@ -303,7 +311,7 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				</div>
 				<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.6s">
 					<p>In a elit in lorem congue varius Sed nec arcu<br>
-					ullamcorp-er tellus ut dignissim nisi risus non tortor.
+						ullamcorp-er tellus ut dignissim nisi risus non tortor.
 					</p>
 				</div>
 			</div>
@@ -324,143 +332,100 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				</div>
 			</div>
 		</div>
-	</div><!--/#parallax-window-->
-	
+	</div>
+	<!--/#parallax-window-->
+
 	<div id="pricing">
 		<div class="container">
 			<div class="text-center">
 				<h3>Pricing Table</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br>
-				et dolore magna aliqua. Ut enim ad minim veniam</p>
+					et dolore magna aliqua. Ut enim ad minim veniam</p>
 			</div>
-			
+
 			<div class="pricing-area text-center">
-                <div class="row">
-                    <div class="col-sm-4 plan price-one wow fadeInDown" data-wow-offset="0" data-wow-delay="0.2s">
-                        <ul>
-                            <li class="heading-one">
-                                <h2>Start Up</h2>
-                                <span>$6/Month</span>
-                            </li>
-                            <li>5 Gb Disk Space</li>
-                            <li>1GB Dadicated Ram</li>
-                            <li>10 Addon Domain</li>
-                            <li>10 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
+				<div class="row">
+					<div class="col-sm-4 plan price-one wow fadeInDown" data-wow-offset="0" data-wow-delay="0.2s">
+						<ul>
+							<li class="heading-one">
+								<h2>Start Up</h2>
+								<span>$6/Month</span>
+							</li>
+							<li>5 Gb Disk Space</li>
+							<li>1GB Dadicated Ram</li>
+							<li>10 Addon Domain</li>
+							<li>10 Email Account</li>
+							<li>24/7 Support</li>
+							<li class="plan-action">
+								<a href="" class="btn btn-primary">Sign up</a>
+							</li>
+						</ul>
+					</div>
 
-                    <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
-                        <ul>
-                            <li class="heading-two">
-                                <h2>Standard</h2>
-                                <span>$12/Month</span>
-                            </li>
-                            <li>10 Gb Disk Space</li>
-                            <li>2GB Dadicated Ram</li>
-                            <li>20 Addon Domain</li>
-                            <li>20 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
+					<div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
+						<ul>
+							<li class="heading-two">
+								<h2>Standard</h2>
+								<span>$12/Month</span>
+							</li>
+							<li>10 Gb Disk Space</li>
+							<li>2GB Dadicated Ram</li>
+							<li>20 Addon Domain</li>
+							<li>20 Email Account</li>
+							<li>24/7 Support</li>
+							<li class="plan-action">
+								<a href="" class="btn btn-primary">Sign up</a>
+							</li>
+						</ul>
+					</div>
 
-                    <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
-                        <img src="img/ri.png">
-                        <ul>
-                            <li class="heading-three">
-                                <h2>Premium</h2>
-                                <span>$24/Month</span>
-                            </li>
-                            <li>50 Gb Disk Space</li>
-                            <li>8GB Dadicated Ram</li>
-                            <li>Unlimited Addon Domain</li>
-                            <li>Unlimited Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
+					<div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
+						<img src="img/ri.png">
+						<ul>
+							<li class="heading-three">
+								<h2>Premium</h2>
+								<span>$24/Month</span>
+							</li>
+							<li>50 Gb Disk Space</li>
+							<li>8GB Dadicated Ram</li>
+							<li>Unlimited Addon Domain</li>
+							<li>Unlimited Email Account</li>
+							<li>24/7 Support</li>
+							<li class="plan-action">
+								<a href="" class="btn btn-primary">Sign up</a>
+							</li>
+						</ul>
+					</div>
+					<?php
 
-                    <div class="col-sm-6 col-md-3 plan price-four wow fadeInLeft">
-                        <ul>
-                            <li class="heading-four">
-                                <h2>Basic</h2>
-                                <span>$3/Month</span>
-                            </li>
-                            <li>5 Gb Disk Space</li>
-                            <li>1GB Dadicated Ram</li>
-                            <li>10 Addon Domain</li>
-                            <li>10 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
+					while ($pricing_fetch_silver = mysqli_fetch_assoc($pricing_row_silver)) {
 
-                    <div class="col-sm-6 col-md-3 plan price-five wow fadeInLeft">
-                        <ul>
-                            <li class="heading-five">
-                                <h2>Standard</h2>
-                                <span>$6/Month</span>
-                            </li>
-                            <li>5 Gb Disk Space</li>
-                            <li>1GB Dadicated Ram</li>
-                            <li>10 Addon Domain</li>
-                            <li>10 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="col-sm-6 col-md-3 plan price-six wow fadeInRight">
-                         <img src="img/rib.png">
-                        <ul>
-                            <li class="heading-six">
-                                <h2>Premium</h2>
-                                <span>$12/Month</span>
-                            </li>
-                            <li>5 Gb Disk Space</li>
-                            <li>1GB Dadicated Ram</li>
-                            <li>10 Addon Domain</li>
-                            <li>10 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3 plan price-seven wow fadeInRight">
-                        <ul>
-                            <li class="heading-seven">
-                                <h2>Developer</h2>
-                                <span>$19/Month</span>
-                            </li>
-                            <li>5 Gb Disk Space</li>
-                            <li>1GB Dadicated Ram</li>
-                            <li>10 Addon Domain</li>
-                            <li>10 Email Account</li>
-                            <li>24/7 Support</li>
-                            <li class="plan-action">
-                                <a href="" class="btn btn-primary">Sign up</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!--/pricing-area-->			
+					?>
+						<div class="col-sm-6 col-md-3 plan price-four wow fadeInLeft">
+							<ul>
+								<li class="heading-four">
+									<h2><?php echo $pricing_fetch_silver['model']?></h2>
+									<span>$<?php echo $pricing_fetch_silver['month']?>/Month</span>
+								</li>
+								<li><?php echo $pricing_fetch_silver['disk']?> Gb Disk Space</li>
+								<li><?php echo $pricing_fetch_silver['ram']?>GB Dadicated Ram</li>
+								<li><?php echo $pricing_fetch_silver['domain']?> Addon Domain</li>
+								<li><?php echo $pricing_fetch_silver['Email Account']?> Email Account</li>
+								<li><?php echo $pricing_fetch_silver['Support']?> Support</li>
+								<li class="plan-action">
+									<a href="" class="btn btn-primary">Sign up</a>
+								</li>
+							</ul>
+						</div>
+					<?php } ?>
+				</div>
+			</div>
+			<!--/pricing-area-->
 		</div>
-	</div><!--/#pricing-->
-	
+	</div>
+	<!--/#pricing-->
+
 	<div id="our-team">
 		<div class="container">
 			<div class="text-center">
@@ -491,7 +456,7 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 						<h4>Creative Director</h4>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit Fusce fermen tum neque a rutrum varius</p>
 					</div>
-				</div>	
+				</div>
 			</div>
 		</div>
 		<div class="team">
@@ -532,8 +497,9 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 				</div>
 			</div>
 		</div>
-	</div><!--/#our-team-->
-	
+	</div>
+	<!--/#our-team-->
+
 	<footer>
 		<div id="contact">
 			<div class="container">
@@ -547,44 +513,47 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 					<div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.2s">
 						<h2>Contact us any time</h2>
 						<p>In a elit in lorem congue varius. Sed nec arcu.
-						Etiam sit amet augue.
-						Fusce fermen tum neque a rutrum varius odio pede 
-						ullamcorp-er tellus ut dignissim nisi risus non tortor.
-						Aliquam mollis neque.</p>				
-					</div>				
-					
+							Etiam sit amet augue.
+							Fusce fermen tum neque a rutrum varius odio pede
+							ullamcorp-er tellus ut dignissim nisi risus non tortor.
+							Aliquam mollis neque.</p>
+					</div>
+
 					<div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.4s">
 						<h2>Contact Info</h2>
 						<ul>
-							<li><i class="fa fa-home fa-2x"></i> Office # 38, Suite 54 Elizebth Street, Victoria State Newyork, USA 33026</li><hr>
-							<li><i class="fa fa-phone fa-2x"></i> +38 000 129900</li><hr>
+							<li><i class="fa fa-home fa-2x"></i> Office # 38, Suite 54 Elizebth Street, Victoria State Newyork, USA 33026</li>
+							<hr>
+							<li><i class="fa fa-phone fa-2x"></i> +38 000 129900</li>
+							<hr>
 							<li><i class="fa fa-envelope fa-2x"></i> info@domain.net</li>
 						</ul>
 					</div>
-					
-					<div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">					
+
+					<div class="col-md-4 wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
 						<form class="form-inline">
 							<div class="form-group">
-								<input type="name" class="form-control" id="exampleInputName" placeholder="name">							
+								<input type="name" class="form-control" id="exampleInputName" placeholder="name">
 							</div>
-							<div class="form-group">							
+							<div class="form-group">
 								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="email">
 							</div>
 						</form>
-						
-						<form>	
+
+						<form>
 							<div class="form-group">
 								<input type="subject" class="form-control" placeholder="Subject">
-							</div>						
-							<textarea class="form-control" rows="5"></textarea>							
+							</div>
+							<textarea class="form-control" rows="5"></textarea>
 							<div class="form-group">
 								<button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
 							</div>
 						</form>
-					</div>	
+					</div>
 				</div>
 			</div>
-		</div><!--/#contact-->					
+		</div>
+		<!--/#contact-->
 		<div class="container">
 			<div class="sub-footer">
 				<div class="text-center">
@@ -600,10 +569,10 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 					</div>
 				</div>
 			</div>
-		</div>			
+		</div>
 		<div class="social-icon">
 			<div class="container">
-				<div class="col-md-6 col-md-offset-3">						
+				<div class="col-md-6 col-md-offset-3">
 					<ul class="social-network">
 						<li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
@@ -612,36 +581,36 @@ while ($slider_fetch=mysqli_fetch_assoc($slider_row)){
 						<li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li>
 						<li><a href="#" class="dribbble tool-tip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
 						<li><a href="#" class="pinterest tool-tip" title="Pinterest"><i class="fa fa-pinterest-square"></i></a></li>
-					</ul>						
+					</ul>
 				</div>
 			</div>
-		</div>						
+		</div>
 		<div class="text-center">
 			<div class="copyright">
 				&copy; 2015 <a target="_blank" href="http://bootstraptaste.com/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">bootstraptaste</a>. All Rights Reserved.
 			</div>
-            <!-- 
+			<!-- 
                 All links in the footer should remain intact. 
                 Licenseing information is available at: http://bootstraptaste.com/license/
                 You can buy this theme without footer links online at: http://bootstraptaste.com/buy/?theme=Bikin
             -->
-		</div>									
+		</div>
 	</footer>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-2.1.1.min.js"></script>		
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/parallax.min.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script src="js/jquery.easing.min.js"></script>
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
 	<script src="js/functions.js"></script>
 	<script>
-	wow = new WOW(
-	 {
-	
-		}	) 
-		.init();
-	</script>	
-  </body>
+		wow = new WOW({
+
+			})
+			.init();
+	</script>
+</body>
+
 </html>
