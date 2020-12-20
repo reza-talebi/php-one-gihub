@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
         $domain = $_POST['Domain'];
         $acc_email = $_POST['accountEmail'];
         
-        $sql_edit = "UPDATE `pricing-gold` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`Domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
+        $sql_edit = "UPDATE `pricing-gold` SET `model`='$model',`month`='$month',`disk`='$disk',`ram`='$ram',`Support`='$support',`domain`='$domain',`Email Account`='$acc_email' WHERE `id`='$idUser'";
         $fe = mysqli_query($con, $sql_edit);
         header("location:pricing-gold.php");
     }
@@ -549,7 +549,7 @@ if (isset($_GET['id_silver'])) {
                             <form method="POST" >
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">model</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model" value="<?php echo $rows['model']?>">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model" value="<?php echo $rows['model']?>">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">

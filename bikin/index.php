@@ -7,6 +7,22 @@ $row=mysqli_query($con,$q);
 $slider_sql="SELECT * FROM `slider` ORDER BY `id` DESC LIMIT 3";
 $slider_row=mysqli_query($con,$slider_sql);
 
+// -----------------pricing gold
+$pricing_sql="SELECT * FROM `pricing-gold` ORDER BY `id` DESC LIMIT 3";
+$pricing_row=mysqli_query($con,$pricing_sql);
+// while ($pricing_fetch=mysqli_fetch_assoc($pricing_row)) {
+	
+// }
+// -----------------pricing gld
+
+// -----------------pricing silver
+$pricing_sql_silver="SELECT * FROM `pricing-silver` ORDER BY `id` DESC LIMIT 3";
+$pricing_row_silver=mysqli_query($con,$pricing_sql_silver);
+// while ($pricing_fetch_silver=mysqli_fetch_assoc($pricing_row_silver)) {
+	
+// }
+// -----------------pricing silver
+
 $arr_header=[];
 $arr_subTitle=[];
 $arr_image=[];

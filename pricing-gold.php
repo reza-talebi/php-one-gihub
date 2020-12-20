@@ -19,7 +19,7 @@ if (isset($_POST['add_silver'])) {
     $domain = $_POST['Domain'];
     $acc_email = $_POST['accountEmail'];
 
-    $sql = "INSERT INTO `pricing-silver` (`model`,`month`,`disk`,`ram`,`Support`,`Domain`,`Email Account`) VALUES ('$model','$month','$disk','$ram','$support','$domain','$acc_email')";
+    $sql = "INSERT INTO `pricing-silver` (`model`,`month`,`disk`,`ram`,`Support`,`domain`,`Email Account`) VALUES ('$model','$month','$disk','$ram','$support','$domain','$acc_email')";
     $fetch = mysqli_query($con, $sql);
     header("location:bikin/index.php");
 }
@@ -548,7 +548,7 @@ if (isset($_REQUEST['del_silver'])) {
                             <form method="POST">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">model</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">
@@ -587,7 +587,7 @@ if (isset($_REQUEST['del_silver'])) {
                             <form method="POST">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">model</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">
@@ -653,7 +653,7 @@ if (isset($_REQUEST['del_silver'])) {
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['disk'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['ram'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Support'] ?></td>
-                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Domain'] ?></td>
+                                            <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['domain'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><?php echo $fetch_table['Email Account'] ?></td>
                                             <td style="text-align:center;" class="td-pricing"><a href="edit-pricing-gold.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
                                             <td style="text-align:center;" class="td-pricing"><a href="pricing-gold.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
