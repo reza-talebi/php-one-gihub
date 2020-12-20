@@ -30,10 +30,14 @@ if (isset($_POST['upload'])) {
 //delete
 if (isset($_REQUEST['del'])) {
     $user_id = intval($_GET['del']);
+    $sql_delete_image = "SELECT `image-slider` FROM `slider` WHERE `id`='$user_id'";
+    $fm = mysqli_query($con, $sql_delete_image);
+    $fetch_image = mysqli_fetch_assoc($fm);
+    $path="../bikin/img/slider-upload/".$fetch_image['image-slider'];
+    unlink($path);
     $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
     $f = mysqli_query($con, $sql_delete);
     header("location:slider.php");
-
 }
 
 

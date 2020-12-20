@@ -5,13 +5,14 @@ include "../include/DBconfig.php";
 
 $idUser = $_GET['id'];
 
-$sql = "SELECT `menu` FROM `bitkin` WHERE `id`='$idUser'";
+$sql = "SELECT * FROM `bitkin` WHERE `id`='$idUser'";
 $fetch = mysqli_query($con, $sql);
 $rows = mysqli_fetch_assoc($fetch);
 
 if (isset($_POST['insert'])) {
     $menu_name = $_POST['menu_name'];
-    $q = "UPDATE `bitkin` SET `menu`='$menu_name' WHERE `id`='$idUser'";
+    $href = $_POST['href_name'];
+    $q = "UPDATE `bitkin` SET `menu`='$menu_name', `href`='$href' WHERE `id`='$idUser'";
     $row = mysqli_query($con, $q);
     header("location:menu.php");
 }
@@ -512,6 +513,10 @@ if (isset($_POST['insert'])) {
                                 <div class="col-auto">
                                     <label for="staticEmail2" class="visually-hidden">Edit menu</label>
                                     <input type="text"  class="form-control-plaintext"  name="menu_name" value="<?php echo $rows['menu']; ?>">
+                                </div>
+                                <div class="col-auto">
+                                    <label for="staticEmail2" class="visually-hidden">Edit href</label>
+                                    <input type="text"  class="form-control-plaintext"  name="href_name" value="<?php echo $rows['href']; ?>">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" name="insert" class="btn btn-primary mb-3">Edit</button>

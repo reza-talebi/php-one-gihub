@@ -81,7 +81,7 @@ while ($slider_fetch = mysqli_fetch_assoc($slider_row)) {
 						<?php
 						while ($fetch = mysqli_fetch_assoc($row)) {
 						?>
-							<li><a href="#feature"><?php echo $fetch['menu']; ?></a></li>
+							<li><a href="<?php echo $fetch['href']; ?>"><?php echo $fetch['menu']; ?></a></li>
 						<?php } ?>
 					</ul>
 				</div>

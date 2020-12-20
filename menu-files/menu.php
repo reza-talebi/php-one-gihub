@@ -501,6 +501,7 @@ $row=mysqli_query($con,$q);
                                 <tr>
                                     <th class="th-table">id</th>
                                     <th class="th-table">menu</th>
+                                    <th class="th-table">address</th>
                                     <th class="th-table">edit user</th>
                                 </tr>
                                 <?php
@@ -509,6 +510,7 @@ $row=mysqli_query($con,$q);
                                 <tr>
                                 <td><?php echo $fetch['id'];?></td>
                                 <td><?php echo $fetch['menu'];?></td>
+                                <td><?php echo $fetch['href'];?></td>
                                 <td>
                                     <a href="edit.php?id=<?php echo $fetch['id'] ?>">
                                         edit
