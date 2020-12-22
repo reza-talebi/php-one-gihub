@@ -2,24 +2,22 @@
 
 include "../include/DBconfig.php";
 
-// $q = "SELECT * FROM `slider`";
-// $row = mysqli_query($con, $q);
+if (isset($_GET['id'])) {
+    $idUser=$_GET['id'];
+    $sql = "SELECT * FROM `users` WHERE `id`='$idUser'";
+    $fetch = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_assoc($fetch);
 
-
-
-if (isset($_REQUEST['user'])) {
-    $user_sign=$_REQUEST['user'];
-    $sql_sign = "SELECT * FROM `users` WHERE `email`='$user_sign'";
-    $query_sign = mysqli_query($con, $sql_sign);
+    if (isset($_POST['insert'])) {
+        $userName = $_POST['username'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $q = "UPDATE `users` SET `username`='$userName',`email`='$email',`password`='$password' WHERE `id`='$idUser'";
+        $row = mysqli_query($con, $q);
+        header("location:panel.php?user=$email");
+    }
 }
 
-// delete
-if (isset($_REQUEST['del'])) {
-    $user_id=$_REQUEST['del'];
-    $sql_delete = "DELETE FROM `users` WHERE `id`='$user_id'";
-    $f = mysqli_query($con, $sql_delete);
-    header("location:../login&register.php");
-}
 
 
 ?>
@@ -215,16 +213,16 @@ if (isset($_REQUEST['del'])) {
                                 <i class="fa fa-ellipsis-h"></i>
                             </li>
                             <li>
-                                <a href="../index.php"><i class="fa fa-share-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Home</span></a>
+                                <a href="index.php"><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">home</span></a>
                             </li>
                             <li>
-                                <a href="../menu-files/menu.php"><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Menu</span></a>
+                                <a href="page_app_social.php"><i class="fa fa-share-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social Net</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">-</span></a>
+                                <a href="page_app_media.php"><i class="gi gi-picture sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Media Box</span></a>
                             </li>
                             <li>
-                                <a href="../pricing-files/pricing.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Pricing</span></a>
+                                <a href="page_app_estorel.php"><i class="gi gi-shopping_cart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">eStore</span></a>
                             </li>
                         </ul>
                         <!-- END Sidebar Navigation -->
@@ -513,38 +511,28 @@ if (isset($_REQUEST['del'])) {
                     <!-- Third Row -->
                     <div class="row">
                         <div class="col-sm-12">
-                            
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">username</th>
-                                        <th scope="col">password</th>
-                                        <th scope="col">email</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    while ($fetch_sign = mysqli_fetch_assoc($query_sign)) {
-
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $fetch_sign['id'] ?></td>
-                                            <td><?php echo $fetch_sign['username'] ?></td>
-                                            <td><?php echo $fetch_sign['password'] ?></td>
-                                            <td><?php echo $fetch_sign['email'] ?></td>
-                                            <td><a href="edit_panel.php?id=<?php echo $fetch_sign['id'] ?>">Edit</a></td>
-                                            <td><a href="panel.php?del=<?php echo $fetch_sign['id'] ?>">Delete</a></td>
-                                        </tr>
-                                        <?php } ?>
-                                </tbody>
-                            </table>
+                            <form method="POST">
+                                <fieldset>
+                                    <legend>Edit slider</legend>
+                                    <div class="mb-3">
+                                        <label for="disabledTextInput" class="form-label">username</label>
+                                        <input type="text" class="form-control" name="username" value="<?php echo $rows['username'] ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">email</label>
+                                        <input type="text" class="form-control" name="email"  value="<?php echo $rows['email'] ?>">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">password</label>
+                                        <input type="text" class="form-control" name="password" value="<?php echo $rows['password'] ?>">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        <div class="mb-3">
+                                    
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" name="insert">EDIT</button>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                     <!-- END Third Row -->
@@ -575,7 +563,7 @@ if (isset($_REQUEST['del'])) {
 <script src="../js/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
-<script src="j../s/parallax.min.js"></script>
+<script src="../js/parallax.min.js"></script>
 <script src="../js/wow.min.js"></script>
 <script src="../js/jquery.easing.min.js"></script>
 <script type="text/javascript" src="../js/fliplightbox.min.js"></script>
@@ -588,8 +576,3 @@ if (isset($_REQUEST['del'])) {
 </script>
 
 </html>
-<?php
-
-
-
-?>
