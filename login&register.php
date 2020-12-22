@@ -6,11 +6,33 @@ if (isset($_POST['insert_sign_up'])) {
    $userName_sign = $_POST['username_sign_up'];
    $password_sign = $_POST['password_sign_up'];
    $email_sign = $_POST['email_sign_up'];
-   $sql = "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$userName_sign','$email_sign_up','$password_sign')";
+   $sql = "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$userName_sign','$email_sign','$password_sign')";
    $tbl = mysqli_query($con, $sql);
-   header("location:index.php");
+   header("location:user-panel/panel.php?user=$email_sign");
 }
 // ------------sign up
+
+
+// ------------login
+if (isset($_POST['submit_login'])) {
+   $email_login = $_POST['email_login'];
+   $password_login = $_POST['password_login'];
+   $sql = "SELECT * FROM `users` WHERE `email`='$email_login' AND `password`='$password_login'";
+   $tbl = mysqli_query($con, $sql);
+   $row = mysqli_num_rows($tbl);
+
+if(empty($row)){
+   echo "<script>alert('تمام فیلد ها را پر کنید ')</script>";
+   
+}else{
+   if(!$row==0){
+      header("location:user-panel/panel.php?user=$email_login");
+   }else{
+      echo "<script>alert('همچین نام کاربری وجود ندارد')</script>";
+   }
+}
+}
+// ------------login
 
 ?>
 
@@ -72,7 +94,7 @@ if (isset($_POST['insert_sign_up'])) {
          <div id="login">
             <h1>Welcome Back!</h1>
 
-            <form action="/" method="post">
+            <form  method="post">
 
                <div class="field-wrap">
                   <label>
