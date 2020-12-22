@@ -2,42 +2,16 @@
 
 include "../include/DBconfig.php";
 
-$q = "SELECT * FROM `slider`";
+$q = "SELECT * FROM `users`";
 $row = mysqli_query($con, $q);
 
 
-
-if (isset($_POST['upload'])) {
-    $headerTitle = $_POST['header-title'];
-    $subtitleTitle = $_POST['sub-title'];
-
-    $imageName =  $_FILES['image-upload']['name'];
-    $imageType = $_FILES['image-upload']['type'];
-    $imageSize = $_FILES['image-upload']['size'];
-    $imageTmp = $_FILES['image-upload']['tmp_name'];
-    $address = "../bikin/img/slider-upload/" . basename($_FILES['image-upload']['name']);
-
-    $sql = "INSERT INTO `slider` (`header-title`,`sub-title`,`image-slider`) VALUES ('$headerTitle','$subtitleTitle','$imageName')";
-    $fetch = mysqli_query($con, $sql);
-    if (move_uploaded_file($_FILES["image-upload"]["tmp_name"], $address)) {
-        header("location:../bikin/index.php");
-    } else {
-        header("location:slider.php");
-        echo "<script>alert('add pic place')</script>";
-    }
-}
-
-//delete
+// delete
 if (isset($_REQUEST['del'])) {
-    $user_id = intval($_GET['del']);
-    $sql_delete_image = "SELECT `image-slider` FROM `slider` WHERE `id`='$user_id'";
-    $fm = mysqli_query($con, $sql_delete_image);
-    $fetch_image = mysqli_fetch_assoc($fm);
-    $path="../bikin/img/slider-upload/".$fetch_image['image-slider'];
-    unlink($path);
-    $sql_delete = "DELETE FROM `slider` WHERE `id`='$user_id'";
+    $user_id = $_REQUEST['del'];
+    $sql_delete = "DELETE FROM `users` WHERE `id`='$user_id'";
     $f = mysqli_query($con, $sql_delete);
-    header("location:slider.php");
+    header("location:panel-user.php");
 }
 
 
@@ -532,22 +506,7 @@ if (isset($_REQUEST['del'])) {
                     <!-- Third Row -->
                     <div class="row">
                         <div class="col-sm-12">
-                            <form method="POST" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">header title</label>
-                                    <input type="text" class="form-control" name="header-title">
-                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">sub title</label>
-                                    <input type="text" class="form-control" name="sub-title">
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="file" class="form-check-input" name="image-upload">
-                                    <label class="form-check-label" for="exampleCheck1">add file</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary" name="upload">add</button>
-                            </form>
+
                         </div>
                     </div>
                     <div class="row">
@@ -556,27 +515,25 @@ if (isset($_REQUEST['del'])) {
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">About</th>
-                                        <th scope="col">image</th>
-                                        <th scope="col">Edit</th>
+                                        <th scope="col">username</th>
+                                        <th scope="col">password</th>
+                                        <th scope="col">email</th>
                                         <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    while ($fetch_table = mysqli_fetch_assoc($row)) {
+                                    while ($fetch = mysqli_fetch_assoc($row)) {
 
                                     ?>
                                         <tr>
-                                            <td><?php echo $fetch_table['id'] ?></td>
-                                            <td><?php echo $fetch_table['header-title'] ?></td>
-                                            <td><?php echo $fetch_table['sub-title'] ?></td>
-                                            <td class="td-img-tables"><img class="image-table" src="../bikin/img/slider-upload/<?php echo $fetch_table['image-slider'] ?>"></td>
-                                            <td><a href="edit-slider.php?id=<?php echo $fetch_table['id'] ?>">Edit</a></td>
-                                            <td><a href="slider.php?del=<?php echo $fetch_table['id'] ?>">Delete</a></td>
+                                            <td><?php echo $fetch['id'] ?></td>
+                                            <td><?php echo $fetch['username'] ?></td>
+                                            <td><?php echo $fetch['password'] ?></td>
+                                            <td><?php echo $fetch['email'] ?></td>
+                                            <td><a href="panel-user.php?del=<?php echo $fetch['id'] ?>">Delete</a></td>
                                         </tr>
-                                        <?php } ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
