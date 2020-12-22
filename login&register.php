@@ -1,3 +1,21 @@
+<?php
+
+include "include/DBconfig.php";
+// ------------sign up
+if (isset($_POST['insert_sign_up'])) {
+   $userName_sign = $_POST['username_sign_up'];
+   $password_sign = $_POST['password_sign_up'];
+   $email_sign = $_POST['email_sign_up'];
+   $sql = "INSERT INTO `users` (`username`,`email`,`password`) VALUES ('$userName_sign','$email_sign_up','$password_sign')";
+   $tbl = mysqli_query($con, $sql);
+   header("location:index.php");
+}
+// ------------sign up
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,14 +38,14 @@
          <div id="signup">
             <h1>Sign Up for Free</h1>
 
-            <form action="/" method="post">
+            <form  method="post">
 
                <div class="top-row">
                   <div class="field-wrap">
                      <label>
                         UserName<span class="req">*</span>
                      </label>
-                     <input type="text" required autocomplete="off" />
+                     <input type="text" required autocomplete="off" name="username_sign_up" />
                   </div>
                </div>
 
@@ -35,17 +53,17 @@
                   <label>
                      Email Address<span class="req">*</span>
                   </label>
-                  <input type="email" required autocomplete="off" />
+                  <input type="email" required autocomplete="off" name="email_sign_up" />
                </div>
 
                <div class="field-wrap">
                   <label>
                      Set A Password<span class="req">*</span>
                   </label>
-                  <input type="password" required autocomplete="off" />
+                  <input type="password" required name="password_sign_up" />
                </div>
 
-               <button type="submit" class="button button-block" />Get Started</button>
+               <button type="submit" name="insert_sign_up" class="button button-block" />Get Started</button>
 
             </form>
 
@@ -60,19 +78,19 @@
                   <label>
                      Email Address<span class="req">*</span>
                   </label>
-                  <input type="email" required autocomplete="off" />
+                  <input type="email" required autocomplete="off" name="email_login" />
                </div>
 
                <div class="field-wrap">
                   <label>
                      Password<span class="req">*</span>
                   </label>
-                  <input type="password" required autocomplete="off" />
+                  <input type="password" required autocomplete="off" name="password_login" />
                </div>
 
                <p class="forgot"><a href="#">Forgot Password?</a></p>
 
-               <button class="button button-block" />Log In</button>
+               <input type="submit" value="Log In" name="submit_login" class="button button-block" />
 
             </form>
 
